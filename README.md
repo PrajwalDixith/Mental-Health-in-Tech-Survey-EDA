@@ -1,115 +1,104 @@
-FedEx Delivery Operations EDA Project
-
-This project invoves solving following these tasks
-
-Project Understanding 
-1. What is the objective of this EDA project? 
-→ To analyze FedEx delivery data, understand operational patterns, identify causes of 
-delays or high costs, and propose efficiency improvements. 
-2. What file do we use for this project? 
-→ A simulated dataset: fedex_deliveries.csv, with details like shipment IDs, cities, 
-dates, weight, cost, status, and delays. 
-3. What should the final submission include? 
-Jupyter Notebook with visualizations 
-Markdown cells explaining insights 
-Cleaned dataset (optional) 
-Code must be well-commented 
+Mental Health in Tech – EDA Assignment 
 
 
-Data Cleaning & Preparation 
-How do I handle missing values? 
-→ First use: 
-python 
-CopyEdit 
-df.isnull().sum()
+� Objective: 
+Explore and analyze the 2014 Mental Health in Tech Survey dataset to uncover patterns, 
+trends, and insights related to attitudes and experiences regarding mental health in the tech 
+workplace. 
 
-4. Then decide: 
-○ Drop rows (df.dropna()) 
-○ Fill with median/mean (e.g., for Cost_USD, Weight_KG) 
-○ Fill with 'Unknown' or mode for categorical columns 
-How do I convert pickup and delivery dates? 
-python 
-CopyEdit 
-df['Pickup_Date'] = pd.to_datetime(df['Pickup_Date']) 
-df['Delivery_Date'] = pd.to_datetime(df['Delivery_Date'])
+This project solves following tasks
 
-  
-5. How do I calculate delivery time in days? 
-python 
-CopyEdit 
-df['Delivery_Time_Days'] = (df['Delivery_Date'] - 
-df['Pickup_Date']).dt.days 
+Section A: Data Understanding and Preprocessing 
+✅ Task 1: Load and Inspect the Data 
+● Load the dataset into a Pandas DataFrame. 
+● Display the first 10 rows. 
+● Print basic info and check for missing values. 
 
-6. How do I detect outliers in cost or weight? 
-→ Use boxplots: 
-python 
-CopyEdit 
-sns.boxplot(df['Cost_USD']) 
+✅ Task 2: Data Cleaning 
+● Identify and handle: 
+○ Invalid age values (e.g., < 18 or > 100) 
+○ Inconsistent or vague gender responses 
+○ Missing or null values 
+● Drop any irrelevant columns (e.g., timestamps, free-text comments, etc.). 
+Expected Deliverables: 
+● Cleaned dataset 
+● Summary of cleaning decisions (bullet points) 
+Section B: Univariate Analysis 
 
-7. Exploratory Data Analysis (EDA) 
-How do I check the average delivery time? 
-python 
-CopyEdit 
-df['Delivery_Time_Days'].mean() 
+✅ Task 3: Demographic Overview 
+● Age distribution (histogram) 
+● Gender distribution (bar chart) 
+● Country-wise response count (top 10) 
 
-8. How do I visualize shipment volume by mode? 
-python 
-CopyEdit 
-df['Shipment_Mode'].value_counts().plot(kind='bar') 
-  
-9. How do I compare shipping costs by customer segment? 
-python 
-CopyEdit 
-df.groupby('Customer_Segment')['Cost_USD'].mean().plot(kind='bar')
- 
-10. How do I analyze delays by mode of shipment? 
-→ Use: 
-python 
-CopyEdit 
-pd.crosstab(df['Shipment_Mode'], 
-df['Delivery_Status']).plot(kind='bar', stacked=True)
+✅ Task 4: Mental Health Context 
+● Count of respondents with/without: 
+○ Family history of mental illness 
+○ Past treatment 
+○ Current work interference due to mental health 
+○ Self-employment status 
+Expected Deliverables: 
+● Plots + short interpretations 
+Section C: Bivariate Analysis 
 
-11. How do I find the most common origin-destination city pairs? 
-python 
-CopyEdit 
-df.groupby(['Origin', 
-'Destination']).size().sort_values(ascending=False).head(5) 
-Geographic & Operational Insights
+✅ Task 5: Gender & Treatment 
+● Bar plot: Treatment status by gender 
 
-12. How do I find the most common delay reasons? 
-python 
-CopyEdit 
-df['Delay_Reason'].value_counts()
- 
-13. How do I compare delivery time across shipment modes? 
-python 
-CopyEdit 
-df.groupby('Shipment_Mode')['Delivery_Time_Days'].mean().plot(kind='ba
-r') 
+✅ Task 6: Country & Work Interference 
+● Group by country: % of respondents who said mental health interferes with work 
 
-14. How do I create a correlation heatmap? 
-python 
-CopyEdit 
-sns.heatmap(df.corr(), annot=True)
+✅ Task 7: Company Size & Benefits 
+● Analyze relationship between no_employees and: 
+○ Availability of mental health benefits 
+○ Wellness programs 
+○ Knowledge of care options 
+Expected Deliverables: 
+● Grouped bar plots / cross-tabulations + insights 
+Section D: Attitudes Toward Mental Health 
 
-15. What kind of insights should I look for? 
-● Which mode is most efficient? 
-● Which cities face delays? 
-● Which reasons lead to longest delivery time? 
-● What segments cost the most?
+✅ Task 8: Discussion Comfort 
+● % of people willing to discuss mental health with: 
+○ Coworkers 
+○ Supervisors 
+○ During interviews 
 
- Business Recommendation Section 
-16. What is an example of an operational inefficiency? 
-“Freight shipments are frequently delayed due to operational issues in urban 
-areas.”
+✅ Task 9: Mental vs Physical Health Perceptions 
+● Analyze and visualize: 
+○ Do employees feel mental health is taken as seriously as physical health? 
+○ Compare across gender and employer type (tech_company) 
 
-17. How do I recommend a mode change? 
-“Consider switching short-distance freight to ground mode to cut cost by 15%.”
+✅ Task 10: Anonymity & Consequences 
+● How do people perceive: 
+○ Anonymity if seeking help? 
+○ Potential negative consequences? 
+● Break this down by employer type (tech_company) and remote workers. 
+Expected Deliverables: 
+● Stacked bar plots or grouped charts + written summaries 
+Section E: Geographic & Remote Work Insights 
 
-18. How do I support my insight with data? 
-→ Always include a plot or metric with explanation: 
-● “As seen in the bar chart, air shipments have the highest delay frequency.”
+✅ Task 11: U.S. State-wise Patterns 
+● Top 5 U.S. states with highest % of people who have received treatment 
+● Map-based or bar plot visual 
 
-19. What’s a good customer satisfaction recommendation? 
-“Send proactive alerts to customers if expected delay reason is weather or 
-customs, to improve trust.”
+✅ Task 12: Remote Work Effect 
+● Compare mental health treatment rates and perception of support between: 
+○ Remote workers vs Non-remote workers 
+Expected Deliverables: 
+● Visual comparisons + written insights 
+Section F: Predictive Insights 
+
+✅ Task 13: Correlation Analysis 
+● Encode categorical variables and compute correlations (e.g., with treatment, 
+interference) 
+● Heatmap of correlations 
+
+✅ Task 14: Strong Predictors 
+● Use logistic regression or decision tree (optional advanced step) to identify: 
+○ Most predictive factors for whether someone sought treatment 
+Expected Deliverables: 
+● Correlation matrix 
+● Optional model summary or feature importance plot 
+Section G: Summary & Recommendations 
+
+✅ Task 15: Final Observations 
+● Summarize 5-7 key insights from your EDA. 
+● Suggest 2-3 recommendations for tech companies to better support mental health. 
